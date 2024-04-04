@@ -1,5 +1,6 @@
 !/bin/sh
 Echo "Entered the script for scanning the code"
+java -jar /c/Jenkins/tools/com.synopsys.integration.jenkins.detect.extensions.tool.DetectAirGapInstallation/synopsys_detect/synopsys-detect-8.10.0.jar
 --detect.project.name="OSPO_Test-Sankalpa-4-4-2024"
 --detect.project.version.name=master
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING
