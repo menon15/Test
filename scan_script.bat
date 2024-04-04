@@ -3,7 +3,7 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
-
+tar -xf synopsys-detect-9.0.0-air-gap.zip
 java -jar synopsys-detect-9.0.0.jar \
 --detect.project.name="OSPO_Test-Sankalpa-4-4-2024" \
 --detect.project.version.name=master \
