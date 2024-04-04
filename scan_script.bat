@@ -1,7 +1,10 @@
+@echo off
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-java -jar /opt/osposcan/jenkins_home/tools/com.synopsys.integration.jenkins.detect.extensions.tool.DetectAirGapInstallation/synopsys_detect/synopsys-detect-9.0.0.jar \
+curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
+
+java -jar synopsys-detect-9.0.0.jar \
 --detect.project.name="OSPO_Test-Sankalpa-4-4-2024" \
 --detect.project.version.name=master \
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING \
@@ -11,3 +14,4 @@ java -jar /opt/osposcan/jenkins_home/tools/com.synopsys.integration.jenkins.dete
 --detect.excluded.detector.types=GIT \
 --detect.detector.search.depth=5 \
 --detect.detector.search.continue=true \
+pause
