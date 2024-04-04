@@ -1,4 +1,5 @@
-echo "Entered the script for scanning the code"
+!/bin/sh
+Echo "Entered the script for scanning the code"
 RUN --detect.project.name="OSPO_Test-Sankalpa-4-4-2024"
 RUN --detect.project.version.name=master
 RUN --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING
