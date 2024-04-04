@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 echo "Entered the script for scanning the code"
 java -jar /opt/osposcan/jenkins_home/tools/com.synopsys.integration.jenkins.detect.extensions.tool.DetectAirGapInstallation/synopsys_detect/synopsys-detect-9.0.0.jar \
 --detect.project.name="OSPO_Test-Sankalpa-4-4-2024" \
