@@ -15,4 +15,4 @@ C:\Program Files\Eclipse Adoptium\jdk-17.0.10.7-hotspot\bin\java.exe -jar C:\Use
 --detect.blackduck.signature.scanner.copyright.search=true \
 --detect.excluded.detector.types=GIT \
 --detect.detector.search.depth=5 \
---detect.detector.search.continue=true \
+--detect.detector.search.continue=true
