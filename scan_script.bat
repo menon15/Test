@@ -17,5 +17,5 @@ java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar 
 --detect.blackduck.signature.scanner.copyright.search=true ^
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
---detect.detector.search.continue=true ^
+--detect.detector.search.continue=true
 EXIT 0
