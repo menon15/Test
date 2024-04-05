@@ -19,4 +19,4 @@ java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar 
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
-EXIT 0
+exit /b 0
