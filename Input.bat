@@ -1,3 +1,5 @@
 @echo off
-set /p projectName=Please enter the project Name: 
+set /p projectName = input (
+            message: 'What is your project name?', 
+            ok: 'Submit')
 echo %projectName%
