@@ -11,7 +11,7 @@ java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar 
 --blackduck.api.token=NzlkMmFjZDItZDk5Ny00YTIxLTk5ODctZDVkNWEzYTYzNjY0OjQ5M2Y3OTY0LWFlMmEtNGExNy1hY2FiLWFmYjUyMmQ2MDM3NQ== ^
 --detect.project.name="OSPO_Test-Sankalpa-4-4-2024" ^
 --detect.project.version.name=main ^
---detect.source.path="C:\Users\SMenon\Desktop\Test"
+--detect.source.path="C:\Users\SMenon\Desktop\Test" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
 --detect.blackduck.signature.scanner.license.search=true ^
