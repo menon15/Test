@@ -3,7 +3,7 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO %Username%
-::mkdir C:\Users\smenon\Desktop\Blackduck_Workspace
+mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
 cd C:\Users\smenon\Desktop\Blackduck_Workspace
 ::curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
 ::tar -xf synopsys-detect-9.0.0-air-gap.zip
