@@ -1,3 +1,3 @@
 @echo off
 echo %Username%
-echo %Password%
+echo %Token%
