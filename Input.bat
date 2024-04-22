@@ -19,10 +19,10 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0-
 --detect.detector.search.continue=true
 ) ELSE (
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
-  cd C:\Users\smenon\Desktop\Blackduck_Workspace
-::curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
-::tar -xf synopsys-detect-9.0.0-air-gap.zip
-java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
+  cd C:\Users\%Username%\Desktop\Blackduck_Workspace
+  curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
+  tar -xf synopsys-detect-9.0.0-air-gap.zip
+  java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
