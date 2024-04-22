@@ -3,8 +3,23 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO %Username%
-mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
-cd C:\Users\smenon\Desktop\Blackduck_Workspace
+IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0-air-gap.zip" (
+  java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
+--blackduck.url=https://analog.app.blackduck.com ^
+--blackduck.api.token=%Token% ^
+--detect.project.name=%Project Name% ^
+--detect.project.version.name=%Project Version% ^
+--detect.source.path="C:\Users\SMenon\Desktop\Test" ^
+--detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
+--detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
+--detect.blackduck.signature.scanner.license.search=true ^
+--detect.blackduck.signature.scanner.copyright.search=true ^
+--detect.excluded.detector.types=GIT ^
+--detect.detector.search.depth=5 ^
+--detect.detector.search.continue=true
+) ELSE (
+  mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
+  cd C:\Users\smenon\Desktop\Blackduck_Workspace
 ::curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
 ::tar -xf synopsys-detect-9.0.0-air-gap.zip
 java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
@@ -20,5 +35,7 @@ java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar 
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
+)
+
 Exit 0
 
