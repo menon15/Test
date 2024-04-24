@@ -3,13 +3,13 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO %Username%
-IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0-air-gap.zip" (
-  java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
+IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
+  java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-*.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
 --detect.project.version.name=%Project Version% ^
---detect.source.path="C:\Users\SMenon\Desktop\Test" ^
+--detect.source.path="C:\Users\%Username%\Desktop\Test" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
 --detect.blackduck.signature.scanner.license.search=true ^
@@ -20,14 +20,14 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0-
 ) ELSE (
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
   cd C:\Users\%Username%\Desktop\Blackduck_Workspace
-  curl.exe -sO https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-9.0.0-air-gap.zip
-  tar -xf synopsys-detect-9.0.0-air-gap.zip
-  java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
+  curl -X GET https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
+  tar -xf synopsys-detect-latest-air-gap.zip
+  java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-*.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
 --detect.project.version.name=%Project Version% ^
---detect.source.path="C:\Users\SMenon\Desktop\Test" ^
+--detect.source.path="C:\Users\%Username%\Desktop\Test" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
 --detect.blackduck.signature.scanner.license.search=true ^
