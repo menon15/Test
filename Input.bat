@@ -5,8 +5,9 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
+  for /f "delims=" %%x in ('dir /od /b synopsys-detect-*.jar') do set latestjar=%%x
   :: Running the usual Blackduck commands
-  java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-*.jar ^
+  java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\%latestjar% ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
@@ -28,8 +29,10 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   curl -X GET https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
   :: Extracting the downloaded air gap zip file
   tar -xf synopsys-detect-latest-air-gap.zip
+  :: find the latest jar from the zip
+  for /f "delims=" %%x in ('dir /od /b synopsys-detect-*.jar') do set latestjar=%%x
   :: Running the usual Blackduck commands
-  java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-*.jar ^
+  java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\%latestjar% ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
