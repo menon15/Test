@@ -30,7 +30,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   :: Extracting the downloaded air gap zip file
   tar -xf synopsys-detect-latest-air-gap.zip
   :: find the latest jar from the zip
-  for /f "delims=" %%x in ('dir /od /b synopsys-detect-*.jar') do set latestjar=%%x
+  ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: Running the usual Blackduck commands
   java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
