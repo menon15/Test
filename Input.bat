@@ -6,13 +6,13 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
-  set current_zip_checksum = certutil -hashfile synopsys-detect-latest-air-gap.zip MD5
+  for /f "delims=" %%A in ('certutil -hashfile synopsys-detect-latest-air-gap.zip MD5 ^| find /v ":"') do set "current_zip_checksum=%%A"
   set "file_checksum="
   for /f "tokens=2" %%A in ('findstr /c:"Md5" header*.json') do (
   set "file_checksum=%%A"
   )
   if defined file_checksum (echo %file_checksum%) else echo checksum not found
-  if ( "%current_zip_checksum%" == "%file_checksum%") ( 
+  if ("%current_zip_checksum%" == "%file_checksum%") ( 
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: Running the usual Blackduck commands
   java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
