@@ -16,25 +16,25 @@ echo !current_zip_checksum!
 echo ">>>>>>>>>>>>>>>>"
 REM if defined file_checksum (echo !file_checksum!) else (echo file_checksum not found)
 	if "!current_zip_checksum!" == "!file_checksum!" do ( 
-		echo "inside if condition"
-		cd C:\Users\%Username%\Desktop\Blackduck_Workspace
-		::ren synopsys-detect-*.jar synopsys-detect-latest.jar
-		::tar -xf C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip
-		::ren synopsys-detect-*.jar synopsys-detect-latest.jar
-		:: Running the usual Blackduck commands
-		java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
-		--blackduck.url=https://analog.app.blackduck.com ^
-		--blackduck.api.token=%Token% ^
-		--detect.project.name=%Project Name% ^
-		--detect.project.version.name=%Project Version% ^
-		--detect.source.path="C:\Users\%Username%\Desktop\Test" ^
-		--detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
-		--detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
-		--detect.blackduck.signature.scanner.license.search=true ^
-		--detect.blackduck.signature.scanner.copyright.search=true ^
-		--detect.excluded.detector.types=GIT ^
-		--detect.detector.search.depth=5 ^
-		--detect.detector.search.continue=true
+	echo "inside if condition"
+	cd C:\Users\%Username%\Desktop\Blackduck_Workspace
+	::ren synopsys-detect-*.jar synopsys-detect-latest.jar
+	::tar -xf C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip
+	::ren synopsys-detect-*.jar synopsys-detect-latest.jar
+	:: Running the usual Blackduck commands
+	java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
+	--blackduck.url=https://analog.app.blackduck.com ^
+	--blackduck.api.token=%Token% ^
+	--detect.project.name=%Project Name% ^
+	--detect.project.version.name=%Project Version% ^
+	--detect.source.path="C:\Users\%Username%\Desktop\Test" ^
+	--detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
+	--detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
+	--detect.blackduck.signature.scanner.license.search=true ^
+	--detect.blackduck.signature.scanner.copyright.search=true ^
+	--detect.excluded.detector.types=GIT ^
+	--detect.detector.search.depth=5 ^
+	--detect.detector.search.continue=true
 	)
 	else(
 		echo "not scanned"
