@@ -36,9 +36,6 @@ REM if defined file_checksum (echo !file_checksum!) else (echo file_checksum not
 	--detect.detector.search.depth=5 ^
 	--detect.detector.search.continue=true
 	)
-	else(
-		echo "not scanned"
-	)
 )
 if not exist "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (echo "Inside else"
 :: Make a directory if it doesnt exist
