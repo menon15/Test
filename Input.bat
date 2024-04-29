@@ -28,7 +28,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
-)
+ )
 ) ELSE (
  :: Make a directory if it doesnt exist
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
