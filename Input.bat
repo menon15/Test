@@ -1,10 +1,18 @@
 @echo off
+setlocal enabledelayedexpansion
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
+  set current_zip_checksum = certutil -hashfile synopsys-detect-latest-air-gap.zip MD5
+  set "file_checksum="
+  for /f "tokens=2" %%A in ('findstr /c:"Md5" header*.json') do (
+  set "file_checksum=%%A"
+  )
+  if defined file_checksum (echo %file_checksum%) else echo checksum not found
+  if( %current_zip_checksum% == %file_checksum%) do ( 
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: Running the usual Blackduck commands
   java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
@@ -20,13 +28,22 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
+)
 ) ELSE (
  :: Make a directory if it doesnt exist
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
   :: change to the required directory
   cd C:\Users\%Username%\Desktop\Blackduck_Workspace
+  set header_file_DATE=%date:~7,2%_%date:~4,2%_%date:~10,4%
+  set header_file_TIME=%time%
+  set header_file=header_%header_file_DATE::=%_%header_file_TIME::=%.json
   :: Fetch the latest air gap zip from Blackduck from artifactory
-  curl -X GET https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
+  curl --dump-header %header_file% https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
+  set "file_checksum="
+  for /f "tokens=2" %%A in ('findstr /c:"Md5" header*.json') do (
+  set "file_checksum=%%A"
+  )
+  if defined file_checksum (echo %file_checksum%) else echo checksum not found
   :: Extracting the downloaded air gap zip file
   tar -xf synopsys-detect-latest-air-gap.zip
   :: find the latest jar from the zip
