@@ -5,7 +5,7 @@ ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
 :: check whether the latest air gap zip already exisits with the user
-IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
+if exist "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
 	for /f "delims=" %%A in ('certutil -hashfile synopsys-detect-latest-air-gap.zip MD5 ^| find /v ":"') do set "current_zip_checksum=%%A"
         set "file_checksum="
 	for /f "tokens=2" %%A in ('findstr /c:"Md5" C:\Users\%Username%\Desktop\Blackduck_Workspace\header_file.json') do (
@@ -35,8 +35,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 		--detect.detector.search.depth=5 ^
 		--detect.detector.search.continue=true
 		)
-) 
-IF NOT EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip"(
+) else(
 	echo "Inside else"
 	:: Make a directory if it doesnt exist
 	mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
