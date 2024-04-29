@@ -42,9 +42,9 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 	mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
 	:: change to the required directory
 	cd C:\Users\%Username%\Desktop\Blackduck_Workspace
-	set header_file_DATE=%date:~7,2%_%date:~4,2%_%date:~10,4%
-	set header_file_TIME=%time%
-	set header_file=header_%header_file_DATE::=%_%header_file_TIME::=%.json
+	set header_file_DATE=!date:~7,2!_!date:~4,2%_!date:~10,4!
+	set header_file_TIME=!time!
+	set header_file=header_!header_file_DATE::=!_!header_file_TIME::=!.json
 	:: Fetch the latest air gap zip from Blackduck from artifactory
 	curl --dump-header %header_file% https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
 	set "file_checksum="
