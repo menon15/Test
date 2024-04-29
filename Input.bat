@@ -38,6 +38,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 else (echo "No sucess")
 ) 
 ELSE (
+ echo "Inside else"
  :: Make a directory if it doesnt exist
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
   :: change to the required directory
