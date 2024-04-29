@@ -44,7 +44,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 	cd C:\Users\%Username%\Desktop\Blackduck_Workspace
 	set header_file=header_file.json
 	:: Fetch the latest air gap zip from Blackduck from artifactory
-	curl --dump-header %header_file% https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
+	curl --dump-header header_file.json https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
 	set "file_checksum="
 	for /f "tokens=2" %%A in ('findstr /c:"Md5" header*.json') do (
 	set "file_checksum=%%A"
