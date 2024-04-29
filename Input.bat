@@ -35,8 +35,9 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
 )
-else(echo "No sucess")
-) ELSE (
+else (echo "No sucess")
+) 
+ELSE (
  :: Make a directory if it doesnt exist
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
   :: change to the required directory
