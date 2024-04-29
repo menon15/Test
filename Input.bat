@@ -10,7 +10,6 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
 --detect.project.version.name=%Project Version% ^
---detect.source.path="C:\Users\%Username%\Desktop\Test" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
 --detect.blackduck.signature.scanner.license.search=true ^
@@ -35,7 +34,6 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --blackduck.api.token=%Token% ^
 --detect.project.name=%Project Name% ^
 --detect.project.version.name=%Project Version% ^
---detect.source.path="C:\Users\%Username%\Desktop\Test" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
 --detect.blackduck.signature.scanner.license.search=true ^
