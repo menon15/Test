@@ -12,7 +12,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   set "file_checksum=%%A"
   )
   if defined file_checksum (echo %file_checksum%) else echo checksum not found
-  if ("%current_zip_checksum%" == "%file_checksum%") ( 
+  if !current_zip_checksum! == !file_checksum! ( 
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: Running the usual Blackduck commands
   java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
@@ -28,7 +28,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
- )
+)
 ) ELSE (
  :: Make a directory if it doesnt exist
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
