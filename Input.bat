@@ -51,7 +51,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   for /f "tokens=2" %%A in ('findstr /c:"Md5" header*.json') do (
   set "file_checksum=%%A"
   )
-  if defined file_checksum (echo %file_checksum%) else echo checksum not found
+  if defined file_checksum (echo !file_checksum!) else echo checksum not found
   :: Extracting the downloaded air gap zip file
   tar -xf synopsys-detect-latest-air-gap.zip
   :: find the latest jar from the zip
