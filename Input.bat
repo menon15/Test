@@ -15,7 +15,8 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   if !current_zip_checksum! == !file_checksum! ( 
   cd C:\Users\%Username%\Desktop\Blackduck_Workspace
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
-  tar -xf synopsys-detect-latest-air-gap.zip
+  tar -xf C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip
+  ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: Running the usual Blackduck commands
   java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
