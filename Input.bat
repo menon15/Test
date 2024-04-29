@@ -12,7 +12,8 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   set "file_checksum=%%A"
   )
   if defined file_checksum (echo !file_checksum!) else echo file_checksum not found
-  if !current_zip_checksum! == !file_checksum! ( 
+  if "!current_zip_checksum!" == "!file_checksum!" ( 
+  echo "inside if condition"
   cd C:\Users\%Username%\Desktop\Blackduck_Workspace
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
   tar -xf C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip
