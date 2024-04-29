@@ -35,7 +35,8 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 		--detect.detector.search.depth=5 ^
 		--detect.detector.search.continue=true
 		)
-	) ELSE (
+	) 
+IF NOT EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip"(
 	echo "Inside else"
 	:: Make a directory if it doesnt exist
 	mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
