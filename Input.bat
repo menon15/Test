@@ -12,7 +12,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   set "file_checksum=%%A"
   )
   if defined file_checksum (echo %file_checksum%) else echo checksum not found
-  if( %current_zip_checksum% == %file_checksum%) do ( 
+  if( %current_zip_checksum% == %file_checksum%) ( 
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: Running the usual Blackduck commands
   java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
