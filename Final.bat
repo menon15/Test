@@ -69,7 +69,7 @@ mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Rev
 
 if %env.GIT_BRANCH%=="release" (
 	goto executeBlackduckReportCommandsForReleaseBranch
-)else (
+) else (
 	goto executeBlackduckReportCommandsForDevlopBranch
 )
 :executeBlackduckReportCommandsForDevlopBranch
