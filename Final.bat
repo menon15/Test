@@ -70,10 +70,7 @@ mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Rev
 if "%env.BRANCH_NAME%"=="release" (
   echo "inside if"
   goto executeBlackduckReportCommandsForReleaseBranch
-) else (
-  echo "inside else"
-  goto executeBlackduckReportCommandsForDevlopBranch
-)
+) else (goto executeBlackduckReportCommandsForDevlopBranch)
 :executeBlackduckReportCommandsForDevlopBranch
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName%.json --docx %ProjectName%-appendix-a.docx --html %ProjectName%-appendix-a.html
