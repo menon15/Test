@@ -67,12 +67,10 @@ call .venv\Scripts\activate
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
 
-if %GIT_BRANCH%=="main"||"develop" (
-	goto executeBlackduckReportCommandsForDevlopBranch
-    
-)
 if %GIT_BRANCH%=="release" (
 	goto executeBlackduckReportCommandsForReleaseBranch
+)else (
+	goto executeBlackduckReportCommandsForDevlopBranch
 )
 :executeBlackduckReportCommandsForDevlopBranch
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
