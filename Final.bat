@@ -47,6 +47,7 @@ java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
+goto Reports
 
 :Reports
 cd C:\Users\%Username%\Desktop\Blackduck_Workspace
