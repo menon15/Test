@@ -4,7 +4,7 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
-set Bit_Token=BBDC-NDE3NDU5NTQ1MDI5OktbSQUd9nsqYlunlnj2sfMFGAex
+::set Bit_Token=BBDC-NDE3NDU5NTQ1MDI5OktbSQUd9nsqYlunlnj2sfMFGAex
 set product_name="Test-Sankalpa-4-4-2024"
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
