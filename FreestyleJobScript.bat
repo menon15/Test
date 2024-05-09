@@ -4,7 +4,6 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
-set product_name="Test-Sankalpa-4-4-2024"
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
   ren synopsys-detect-*.jar synopsys-detect-latest.jar
@@ -36,7 +35,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 :executeBlackduckCommands
 java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
---blackduck.api.token=%Token% ^
+--blackduck.api.token=%BlackduckToken% ^
 --detect.project.name=%ProjectName% ^
 --detect.project.version.name=%ProjectVersion% ^
 --detect.source.path="C:\Users\SMenon\Desktop\Test" ^
@@ -51,19 +50,19 @@ goto Reports
 
 :Reports
 cd C:\Users\%Username%\Desktop\Blackduck_Workspace
-git clone https://%Username%:%Bit_Token%@bitbucket.analog.com/scm/dte-inf/bd-cli.git
+git clone https://%Username%:%BitToken%@bitbucket.analog.com/scm/dte-inf/bd-cli.git
 cd bd-cli/
 (
     echo {
     echo. "baseUrl": "https://analog.app.blackduck.com",
-    echo. "api_token": "%Token%"
+    echo. "api_token": "%BlackduckToken%"
 	echo }
 ) >.restconfig.json
 
 python -m venv .venv
 call .venv\Scripts\activate
 .venv\Scripts\pip.exe install -r requirements.txt
-mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents
+mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
 
 if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="SUCCESS" (
@@ -80,13 +79,13 @@ call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName%.json --html %ProjectName%-cof-review.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py  legal-review  %ProjectName%.json --html %ProjectName%-legal-review.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py license-file %ProjectName%.json --notice
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%projectName%.json C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\%product_name%.json
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.docx C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\appendix-a_%product_name%.docx
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\appendix-a_%product_name%.html
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-cof-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\cof-review_%product_name%.html
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-legal-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\legal-review_%product_name%.html
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\NOTICE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\NOTICE
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\LICENSE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\LICENSE
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%projectName%.json C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\%ProductName%.json
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.docx C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\appendix-a_%ProductName%.docx
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\appendix-a_%ProductName%.html
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-cof-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\cof-review_%ProductName%.html
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-legal-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\legal-review_%ProductName%.html
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\NOTICE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\NOTICE
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\LICENSE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\LICENSE
 
 :executeBlackduckReportCommandsForReleaseBranch
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
@@ -94,11 +93,11 @@ python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appe
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName%.json --html %ProjectName%-cof-review.html
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py  legal-review  %ProjectName%.json --html %ProjectName%-legal-review.html
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py license-file %ProjectName%.json --notice
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%projectName%.json C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\%product_name%.json
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.docx C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\appendix-a_%product_name%.docx
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\appendix-a_%product_name%.html
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-cof-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\cof-review_%product_name%.html
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-legal-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\legal-review_%product_name%.html
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\NOTICE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\NOTICE
-echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\LICENSE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\LICENSE
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%projectName%.json C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\%ProductName%.json
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.docx C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\appendix-a_%ProductName%.docx
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-appendix-a.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\appendix-a_%ProductName%.html
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-cof-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\cof-review_%ProductName%.html
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-legal-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\legal-review_%ProductName%.html
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\NOTICE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\NOTICE
+echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\LICENSE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\LICENSE
 :endOfBatch
