@@ -89,7 +89,7 @@ echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\NOTI
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\LICENSE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents\LICENSE
 
 :executeBlackduckReportCommandsForReleaseBranch
-if %currentBuild.currentResult%=="SUCCESS" (
+if "%currentBuild.currentResult%"=="SUCCESS" (
 	python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
 	python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName%.json --docx %ProjectName%-appendix-a.docx --html %ProjectName%-appendix-a.html
 	python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName%.json --html %ProjectName%-cof-review.html
