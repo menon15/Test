@@ -49,30 +49,38 @@ java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 goto Reports
 
 :Reports
+ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+ECHO "Entered the script for generating the Blackduck Reports "
+ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+:: Change to the directory created for scanning using Blackduck
 cd C:\Users\%Username%\Desktop\Blackduck_Workspace
+:: Clone the BD-CLI to generate reports
 git clone https://%Username%:%BitToken%@bitbucket.analog.com/scm/dte-inf/bd-cli.git
+:: Change to the directory created for generating reports using Blackduck rest api
 cd bd-cli/
+:: create a .restconfig.json file
 (
     echo {
     echo. "baseUrl": "https://analog.app.blackduck.com",
     echo. "api_token": "%BlackduckToken%"
 	echo }
 ) >.restconfig.json
-
+:: create a virtual enviornemnt
 python -m venv .venv
+:: Activate the virtual enviornment
 call .venv\Scripts\activate
+:: install the requirements on virtual enviornment
 .venv\Scripts\pip.exe install -r requirements.txt
+:: create a directory accooring to OSPO working style
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents
-::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
-
+:: check if the branch name 
 if ("%env.BRANCH_NAME%"=="release" OR "%env.TAG_NAME%") AND "%currentBuild.currentResult%"=="SUCCESS" (
-    echo "inside release"
   	goto executeBlackduckReportCommandsForReleaseBranch
     ) else if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="FAILURE" (echo "Please fix the rule violations first")
 ) else ( 
-echo "inside else"
 goto executeBlackduckReportCommandsForDevlopBranch
   )
+:: Blackduck command for develop branch
 :executeBlackduckReportCommandsForDevlopBranch
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName%.json --docx %ProjectName%-appendix-a.docx --html %ProjectName%-appendix-a.html
@@ -86,7 +94,7 @@ echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%Pro
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName%-legal-review.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\legal-review_%ProductName%.html
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\NOTICE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\NOTICE
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\LICENSE C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%ProductName%-all-documents\LICENSE
-
+:: Blackduck commands for release branch
 :executeBlackduckReportCommandsForReleaseBranch
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName%.json --docx %ProjectName%-appendix-a.docx --html %ProjectName%-appendix-a.html
