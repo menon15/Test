@@ -67,7 +67,7 @@ mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Rev
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
 
 if "%env.BRANCH_NAME%"=="release" (
-	  echo "inside release"
+    echo "inside release"
     if "%currentBuild.currentResult%"=="SUCCESS" (
   	goto executeBlackduckReportCommandsForReleaseBranch
     ) else (echo "Please fix the rule violations first")
