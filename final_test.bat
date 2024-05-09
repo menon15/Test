@@ -66,11 +66,10 @@ call .venv\Scripts\activate
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\%product_name%-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
 
-if "%env.BRANCH_NAME%"=="release" (
+if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="SUCCESS" (
     echo "inside release"
-    if "%currentBuild.currentResult%"=="SUCCESS" (
   	goto executeBlackduckReportCommandsForReleaseBranch
-    ) else (echo "Please fix the rule violations first")
+    ) else if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="FAILURE" (echo "Please fix the rule violations first")
 ) else ( 
 echo "inside else"
 goto executeBlackduckReportCommandsForDevlopBranch
