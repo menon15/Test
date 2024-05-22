@@ -21,7 +21,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
   :: change to the required directory
   cd C:\Users\%Username%\Desktop\Blackduck_Workspace
-  :: Fetch the latest air gap zip from Blackduck from artifactory
+  :: Fetch the latest header json file from artifactory
   curl -I  https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip  > header_file.json
   :: Fetch the latest air gap zip from Blackduck from artifactory
   curl -X GET https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip -o synopsys-detect-latest-air-gap.zip
@@ -71,9 +71,9 @@ if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="SUCCESS" 
     ) else if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="FAILURE" (echo "Please fix the rule violations first")
 ) else ( 
 echo "inside else"
-goto executeBlackduckReportCommandsForDevlopBranch
+goto executeBlackduckReportCommandsForDevelopBranch
   )
-:executeBlackduckReportCommandsForDevlopBranch
+:executeBlackduckReportCommandsForDevelopBranch
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom %ProjectName% %ProjectVersion% --out %projectName%.json --recursive --custom-fields --include-hidden-comps
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName%.json --docx %ProjectName%-appendix-a.docx --html %ProjectName%-appendix-a.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName%.json --html %ProjectName%-cof-review.html
