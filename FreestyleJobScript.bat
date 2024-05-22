@@ -7,14 +7,18 @@ ECHO Running script by %Username%
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
-  Curl -I  https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip  > new_header_file.json
-  for /f "delims=" %%A in ('certutil -hashfile synopsys-detect-latest-air-gap.zip MD5 ^| find /v ":"') do set "current_zip_checksum=%%A"
-  set "file_checksum="
-  for /f "tokens=2" %%A in ('findstr /c:"Md5" C:\Users\%Username%\Desktop\Blackduck_Workspace\next_header_file.json') do (
-  set "file_checksum=%%A"
+  cd C:\Users\%Username%\Desktop\Blackduck_Workspace\
+  curl -I https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip > new_header_file.json
   )
-  echo !current_zip_checksum!
-  if "!current_zip_checksum!" == "!file_checksum!" do ( 
+  for /f "delims=" %%A in ('certutil -hashfile synopsys-detect-latest-air-gap.zip MD5 ^| find /v ":"') do set "current_zip_checksum=%%A"
+  set "new_header_file_checksum="
+  for /f "tokens=2" %%A in ('findstr /c:"Md5" C:\Users\%Username%\Desktop\Blackduck_Workspace\new_header_file.json') do (
+  set "new_header_file_checksum=%%A"
+  )
+  
+  if "!current_zip_checksum!" == "!new_header_file_checksum!" do ( 
+		echo !current_zip_checksum!
+		echo !new_header_file_checksum!
 		goto executeBlackduckCommands
     )
   ) ELSE (
@@ -67,7 +71,6 @@ mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Rev
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
 
 if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="SUCCESS" (
-    echo "inside release"
   	goto executeBlackduckReportCommandsForReleaseBranch
     ) else if "%env.BRANCH_NAME%"=="release" AND "%currentBuild.currentResult%"=="FAILURE" (echo "Please fix the rule violations first")
 ) else ( 
