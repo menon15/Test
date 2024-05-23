@@ -65,7 +65,7 @@ cd bd-cli/
 ) >.restconfig.json
 
 python -m venv .venv
-call .venv\Scripts\activate
+.venv\Scripts\activate
 .venv\Scripts\pip.exe install -r requirements.txt
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
