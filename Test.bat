@@ -51,6 +51,7 @@ java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
+echo %ERRORLEVEL%
 goto Reports
 
 :Reports
@@ -69,13 +70,12 @@ call .venv\Scripts\activate
 .venv\Scripts\pip.exe install -r requirements.txt
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
-echo %ERRORLEVEL%
 echo %env.BRANCH_NAME%
 echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
 echo %currentBuild.result%
 echo %GIT_BRANCH%
-if "%eGIT_BRANCH%"=="origin/develop" if "%currentBuild.result%"=="SUCCESS" (
+if "%GIT_BRANCH%"=="origin/develop" if "%currentBuild.result%"=="SUCCESS" (
         GOTO executeBlackduckReportCommandsForDevelopBranch
 )
 if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.result%"=="SUCCESS" (
