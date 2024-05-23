@@ -20,8 +20,6 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   for /f "delims=" %%A in ('certutil -hashfile synopsys-detect-latest-air-gap.zip MD5 ^| find /v ":"') do set "current_zip_checksum=%%A"
   set "new_header_file_checksum="
   for /f "tokens=2" %%A in ('findstr /c:"Md5" C:\Users\%Username%\Desktop\Blackduck_Workspace\new_header_file.json') do set "new_header_file_checksum=%%A"
-  
-  
   if "!current_zip_checksum!" == "!new_header_file_checksum!" do( 
 		echo !current_zip_checksum!
 		echo !new_header_file_checksum!
@@ -69,13 +67,11 @@ cd bd-cli/
     echo. "api_token": "%BlackduckToken%"
 	echo }
 ) >.restconfig.json
-
 python -m venv .venv
 call .venv\Scripts\activate
 .venv\Scripts\pip.exe install -r requirements.txt
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
-
 if %env.BRANCH_NAME%==develop if %currentBuild.currentResult%==SUCCESS (
         GOTO executeBlackduckReportCommandsForDevelopBranch
 )
@@ -85,7 +81,6 @@ if %env.BRANCH_NAME%==release if %currentBuild.currentResult%==SUCCESS (
 if %env.BRANCH_NAME%==release if %currentBuild.currentResult%==FAILURE (
 		GOTO error
 )
-
 :executeBlackduckReportCommandsForDevelopBranch
 echo "inside develop branch$$$$$$$"
 echo env.GIT_URL
