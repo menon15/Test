@@ -73,13 +73,13 @@ echo %env.BRANCH_NAME%
 echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
 echo %GIT_BRANCH%
-if "%eGIT_BRANCH%"=="origin/develop" if "%currentBuild.currentResult%"=="SUCCESS" (
+if "%eGIT_BRANCH%"=="origin/develop" if "%BUILD_STATUS%"=="SUCCESS" (
         GOTO executeBlackduckReportCommandsForDevelopBranch
 )
-if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.currentResult%"=="SUCCESS" (
+if "%GIT_BRANCH%"=="origin/release" if "%BUILD_STATUS%"=="SUCCESS" (
         GOTO executeBlackduckReportCommandsForReleaseBranch
 )
-if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.currentResult%"=="FAILURE" (
+if "%GIT_BRANCH%"=="origin/release" if "%BUILD_STATUS%"=="FAILURE" (
 		GOTO error
 )
 
