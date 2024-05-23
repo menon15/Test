@@ -41,8 +41,8 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%BlackduckToken% ^
---detect.project.name=%ProjectName% ^
---detect.project.version.name=%ProjectVersion% ^
+--detect.project.name="%ProjectName%" ^
+--detect.project.version.name="%ProjectVersion%" ^
 --detect.source.path="C:\Users\%Username%\Desktop\Test" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
