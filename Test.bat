@@ -1,4 +1,4 @@
-@echo off
+::@echo off
 setlocal enabledelayedexpansion
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
