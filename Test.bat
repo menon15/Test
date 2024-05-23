@@ -100,7 +100,7 @@ exit/b
 :executeBlackduckReportCommandsForReleaseBranch 
 echo "inside release branch$$$$$$$"
 echo %GIT_URL%
-call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
+call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build=release generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py  legal-review  %ProjectName: =%.json --html %ProjectName: =%-legal-review.html
