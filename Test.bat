@@ -69,7 +69,7 @@ call .venv\Scripts\activate
 .venv\Scripts\pip.exe install -r requirements.txt
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
-echo "%env.BRANCH_NAME%
+echo %env.BRANCH_NAME%
 echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
 if "%env.BRANCH_NAME%"=="develop" if "%currentBuild.currentResult%"=="SUCCESS" (
