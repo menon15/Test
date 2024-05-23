@@ -65,7 +65,7 @@ cd bd-cli/
 ) >.restconfig.json
 
 python -m venv .venv
-.venv\Scripts\activate
+call .venv\Scripts\activate
 .venv\Scripts\pip.exe install -r requirements.txt
 mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents
 ::cd C:\Users\%Username%\Desktop\Blackduck_Workspace\Reports\
@@ -83,6 +83,7 @@ if "%env.BRANCH_NAME%"=="release" if "%currentBuild.currentResult%"=="FAILURE" (
 :executeBlackduckReportCommandsForDevelopBranch
 echo "inside develop branch$$$$$$$"
 echo %GIT_URL%
+echo "python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom "%ProjectName%" "%ProjectVersion%" --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps"
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
@@ -100,7 +101,7 @@ GOTO endOfBatch
 :executeBlackduckReportCommandsForReleaseBranch 
 echo "inside release branch$$$$$$$"
 echo %GIT_URL%
-python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
+python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom "%ProjectName%" "%ProjectVersion%" --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py  legal-review  %ProjectName: =%.json --html %ProjectName: =%-legal-review.html
