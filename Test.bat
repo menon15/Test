@@ -72,6 +72,7 @@ mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Rev
 echo %env.BRANCH_NAME%
 echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
+echo %GIT_BRANCH%
 if "%env.BRANCH_NAME%"=="develop" if "%currentBuild.currentResult%"=="SUCCESS" (
         GOTO executeBlackduckReportCommandsForDevelopBranch
 )
