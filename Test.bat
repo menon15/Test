@@ -100,11 +100,11 @@ exit/b
 :executeBlackduckReportCommandsForReleaseBranch 
 echo "inside release branch$$$$$$$"
 echo %GIT_URL%
-python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
-python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
-python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
-python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py  legal-review  %ProjectName: =%.json --html %ProjectName: =%-legal-review.html
-python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py license-file %ProjectName: =%.json --notice
+call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
+call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
+call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
+call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py  legal-review  %ProjectName: =%.json --html %ProjectName: =%-legal-review.html
+call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py license-file %ProjectName: =%.json --notice
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName: =%.json C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents\"%ProductName: =%".json
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName: =%-appendix-a.docx C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents\appendix-a_"%ProductName: =%".docx
 echo f | xcopy /f /y C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\%ProjectName: =%-appendix-a.html C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Review_Documents\"%ProductName: =%"-all-documents\appendix-a_"%ProductName: =%".html
