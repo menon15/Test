@@ -82,7 +82,7 @@ if "%env.BRANCH_NAME%"=="release" if "%currentBuild.currentResult%"=="FAILURE" (
 
 :executeBlackduckReportCommandsForDevelopBranch
 echo "inside develop branch$$$$$$$"
-echo %env.GIT_URL%
+echo %GIT_URL%
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build develop generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
@@ -99,7 +99,7 @@ exit/b
 
 :executeBlackduckReportCommandsForReleaseBranch 
 echo "inside release branch$$$$$$$"
-echo %env.GIT_URL%
+echo %GIT_URL%
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom %ProjectName% %ProjectVersion: =% --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
 python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
