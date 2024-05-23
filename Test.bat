@@ -72,14 +72,15 @@ mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\Reports\Initial_Rev
 echo %env.BRANCH_NAME%
 echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
+echo %currentBuild.result%
 echo %GIT_BRANCH%
-if "%eGIT_BRANCH%"=="origin/develop" if "%BUILD_STATUS%"=="SUCCESS" (
+if "%eGIT_BRANCH%"=="origin/develop" if "%currentBuild.result%"=="SUCCESS" (
         GOTO executeBlackduckReportCommandsForDevelopBranch
 )
-if "%GIT_BRANCH%"=="origin/release" if "%BUILD_STATUS%"=="SUCCESS" (
+if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.result%"=="SUCCESS" (
         GOTO executeBlackduckReportCommandsForReleaseBranch
 )
-if "%GIT_BRANCH%"=="origin/release" if "%BUILD_STATUS%"=="FAILURE" (
+if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.result%"=="FAILURE" (
 		GOTO error
 )
 
