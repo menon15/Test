@@ -51,7 +51,7 @@ java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
-echo %ERRORLEVEL%
+set SCAN_STATUS = %ERRORLEVEL%
 goto Reports
 
 :Reports
@@ -75,13 +75,13 @@ echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
 echo %currentBuild.result%
 echo %GIT_BRANCH%
-if "%GIT_BRANCH%"=="origin/develop" if "%currentBuild.result%"=="SUCCESS" (
+if "%GIT_BRANCH%"=="origin/develop" if "%SCAN_STATUS%"==0 (
         GOTO executeBlackduckReportCommandsForDevelopBranch
 )
-if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.result%"=="SUCCESS" (
+if "%GIT_BRANCH%"=="origin/release" if "%SCAN_STATUS%"==0 (
         GOTO executeBlackduckReportCommandsForReleaseBranch
 )
-if "%GIT_BRANCH%"=="origin/release" if "%currentBuild.result%"=="FAILURE" (
+if "%GIT_BRANCH%"=="origin/release" if "%SCAN_STATUS%"==1 (
 		GOTO error
 )
 
