@@ -75,6 +75,7 @@ echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
 echo %currentBuild.result%
 echo %GIT_BRANCH%
+echo %env.GIT_BRANCH"
 if "%GIT_BRANCH%" == "origin/release" if %SCAN_STATUS%==0 goto :executeBlackduckReportCommandsForReleaseBranch
 if "%GIT_BRANCH%" == "origin/develop" if %SCAN_STATUS%==0 goto :executeBlackduckReportCommandsForDevelopBranch
 if "%GIT_BRANCH%" == "origin/release" if %SCAN_STATUS%==1 echo "Please fix the rule violations first"
