@@ -51,7 +51,7 @@ java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 --detect.excluded.detector.types=GIT ^
 --detect.detector.search.depth=5 ^
 --detect.detector.search.continue=true
-set SCAN_STATUS = %ERRORLEVEL%
+set /A SCAN_STATUS = %ERRORLEVEL%
 goto Reports
 
 :Reports
@@ -75,15 +75,9 @@ echo %BRANCH_NAME%
 echo %currentBuild.currentResult%
 echo %currentBuild.result%
 echo %GIT_BRANCH%
-if "!GIT_BRANCH!"=="origin/develop" if "!SCAN_STATUS!"==0 (
-        GOTO executeBlackduckReportCommandsForDevelopBranch
-)
-if "!GIT_BRANCH!"=="origin/release" if "!SCAN_STATUS!"==0 (
-        GOTO executeBlackduckReportCommandsForReleaseBranch
-)
-if "!GIT_BRANCH!"=="origin/release" if "!SCAN_STATUS!"==1 (
-		GOTO error
-)
+if "%GIT_BRANCH%" == "develop" if %SCAN_STATUS%==0 goto :executeBlackduckReportCommandsForDevelopBranch
+if "%GIT_BRANCH%" == "release" if %SCAN_STATUS%==0 goto ::executeBlackduckReportCommandsForReleaseBranch 
+if "%GIT_BRANCH%" == "release" if %SCAN_STATUS%==1 echo "Please fix the rule violations first"
 
 :executeBlackduckReportCommandsForDevelopBranch
 echo "inside develop branch$$$$$$$"
