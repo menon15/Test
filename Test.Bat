@@ -10,6 +10,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
   cd C:\Users\%Username%\Desktop\Blackduck_Workspace\
   curl -I https://artifactory.analog.com:443/artifactory/see-generic/adi/see/blackduck/synopsys-detect-latest-air-gap.zip > new_header_file.json
+  goto :cloneRequiredRepository
   )
   for /f "delims=" %%A in ('certutil -hashfile synopsys-detect-latest-air-gap.zip MD5 ^| find /v ":"') do set "current_zip_checksum=%%A"
   set "new_header_file_checksum="
@@ -22,6 +23,7 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
 		goto executeBlackduckCommands
     )
   ) ELSE (
+  
  :: Make a directory if it doesnt exist
   mkdir C:\Users\%Username%\Desktop\Blackduck_Workspace
   :: change to the required directory
@@ -34,10 +36,14 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   tar -xf synopsys-detect-latest-air-gap.zip
   ren synopsys-detect-*.jar synopsys-detect-latest.jar
   :: find the latest jar from the zip
+  :: Cloning the required repository
+  goto :cloneRequiredRepository
   :: Running the usual Blackduck commands
   goto executeBlackduckCommands
     )
 :cloneRequiredRepository
+:: Make a directory for project
+mkdir C:\Users\%Username%\Desktop\Project
 git clone %GIT_URL% C:\Users\%Username%\Desktop\Project
 :executeBlackduckCommands
 java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
