@@ -37,13 +37,15 @@ IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest
   :: Running the usual Blackduck commands
   goto executeBlackduckCommands
     )
+:cloneRequiredRepository
+git clone %GIT_URL% C:\Users\%Username%\Desktop\Project
 :executeBlackduckCommands
 java -jar C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
 --blackduck.api.token=%BlackduckToken% ^
 --detect.project.name="%ProjectName%" ^
 --detect.project.version.name="%ProjectVersion%" ^
---detect.source.path="C:\Users\%Username%\Desktop\Test" ^
+--detect.source.path="C:\Users\%Username%\Desktop\Project" ^
 --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING ^
 --detect.blackduck.signature.scanner.individual.file.matching=BINARY ^
 --detect.blackduck.signature.scanner.license.search=true ^
@@ -100,7 +102,7 @@ GOTO endOfBatch
 
 :executeBlackduckReportCommandsForReleaseBranch 
 echo "inside release branch$$$$$$$"
-echo %GIT_URL%
+:: echo 
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py --build release generate-bom "%ProjectName%" "%ProjectVersion%" --out %ProjectName: =%.json --recursive --custom-fields --include-hidden-comps
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-appendix %ProjectName: =%.json --docx %ProjectName: =%-appendix-a.docx --html %ProjectName: =%-appendix-a.html
 call python C:\Users\%Username%\Desktop\Blackduck_Workspace\bd-cli\bd_cli.py cof-review %ProjectName: =%.json --html %ProjectName: =%-cof-review.html
