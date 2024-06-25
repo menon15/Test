@@ -8,7 +8,6 @@ cd C:\Users\smenon\Desktop\Blackduck_Workspace
 ::tar -xf synopsys-detect-9.0.0-air-gap.zip
 java -jar C:\Users\smenon\Desktop\Blackduck_Workspace\synopsys-detect-9.0.0.jar ^
 --blackduck.url=https://analog.app.blackduck.com ^
---blackduck.api.token=NzlkMmFjZDItZDk5Ny00YTIxLTk5ODctZDVkNWEzYTYzNjY0OjQ5M2Y3OTY0LWFlMmEtNGExNy1hY2FiLWFmYjUyMmQ2MDM3NQ== ^
 --detect.project.name="OSPO_Test-Sankalpa-4-4-2024" ^
 --detect.project.version.name=main ^
 --detect.source.path="C:\Users\SMenon\Desktop\Test" ^
