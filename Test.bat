@@ -4,13 +4,6 @@ ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO "Entered the script for scanning the code"
 ECHO ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 ECHO Running script by %Username%
-:: set ProjectName="OSPO_Test Sankalpa"
-:: set ProductName="Test Sankalpa 1234"
-:: set ProjectVersion="main"
-:: set BlackduckToken=NzlkMmFjZDItZDk5Ny00YTIxLTk5ODctZDVkNWEzYTYzNjY0OjQ5M2Y3OTY0LWFlMmEtNGExNy1hY2FiLWFmYjUyMmQ2MDM3NQ==
-:: set env.BRANCH_NAME=develop
-:: set currentBuild.currentResult=SUCCESS
-setlocal enabledelayedexpansion
 :: check whether the latest air gap zip already exisits with the user
 IF EXIST "C:\Users\%Username%\Desktop\Blackduck_Workspace\synopsys-detect-latest-air-gap.zip" (
   ::ren synopsys-detect-*.jar synopsys-detect-latest.jar
